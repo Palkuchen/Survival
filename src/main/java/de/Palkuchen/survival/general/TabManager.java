@@ -30,14 +30,15 @@ public class TabManager extends BukkitRunnable {
 
         HashMap<Group, Team> teams = new HashMap<>();
         for (Group group : Group.values()) {
-            Team teamTrusted = scoreboard.registerNewTeam(group.name());
-            teamTrusted.setPrefix(group.getPrefix() + " §7- ");
-            teamTrusted.setColor(ChatColor.GRAY);
+            Team team = scoreboard.registerNewTeam(group.name());
+            team.setPrefix(group.getPrefix() + " §7- ");
+            team.setColor(ChatColor.GRAY);
+            teams.put(group, team);
         }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            String header = "§7Unser §aSurvival §7Server\n";
-            String footer = "\n§e§lAktuelle Spieler " + Bukkit.getOnlinePlayers().size();
+            String header = "  §7Unser §aSurvival §7Server  \n";
+            String footer = "\n  §e§lAktuelle Spieler " + Bukkit.getOnlinePlayers().size();
             player.setPlayerListHeaderFooter(header, footer);
 
             CustomPlayer customPlayer = PlayerHandler.getPlayer(player);
