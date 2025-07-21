@@ -1,11 +1,16 @@
 package de.Palkuchen.survival.general;
 
+import de.Palkuchen.survival.player.CustomPlayer;
+import de.Palkuchen.survival.player.Group;
+import de.Palkuchen.survival.player.PlayerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
+
+import java.util.HashMap;
 
 public class TabManager extends BukkitRunnable {
 
@@ -23,27 +28,21 @@ public class TabManager extends BukkitRunnable {
     public void run() {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 
-        Team teamMod = scoreboard.registerNewTeam("MOD");
-        teamMod.setPrefix(ChatColor.AQUA + "[Trusted] ");
-        teamMod.setColor(ChatColor.GRAY);
-
-        Team teamDefault = scoreboard.registerNewTeam("Gast");
-        teamDefault.setPrefix(ChatColor.GRAY + "[Gast] ");
-        teamDefault.setColor(ChatColor.GRAY);
+        HashMap<Group, Team> teams = new HashMap<>();
+        for (Group group : Group.values()) {
+            Team teamTrusted = scoreboard.registerNewTeam(group.name());
+            teamTrusted.setPrefix(group.getPrefix() + " §7- ");
+            teamTrusted.setColor(ChatColor.GRAY);
+        }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            // Tablist-Header/Footer setzen
-            String header = "§7Unser §aSurvival §7Server/n";
-            String footer = "/n§e§lAktuelle Spieler " + Bukkit.getOnlinePlayers().size();
+            String header = "§7Unser §aSurvival §7Server\n";
+            String footer = "\n§e§lAktuelle Spieler " + Bukkit.getOnlinePlayers().size();
             player.setPlayerListHeaderFooter(header, footer);
 
-            // Rechte prüfen und Spieler zu Teams zuweisen
-            if (player.hasPermission("admin")) {
-                teamMod.addEntry(player.getName());
-            } else {
-                teamDefault.addEntry(player.getName());
-            }
-
+            CustomPlayer customPlayer = PlayerHandler.getPlayer(player);
+            Group group = customPlayer.getGroup();
+            teams.get(group).addEntry(player.getName());
             player.setScoreboard(scoreboard);
         }
     }

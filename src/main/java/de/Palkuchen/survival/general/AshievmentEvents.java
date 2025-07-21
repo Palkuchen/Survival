@@ -13,13 +13,11 @@ public class AshievmentEvents implements Listener {
     public void onAdvancementDone(PlayerAdvancementDoneEvent event) {
         Player player = event.getPlayer();
         Advancement advancement = event.getAdvancement();
-        String key = advancement.getKey().getKey(); // z.B. "story/mine_diamond"
+        String key = advancement.getKey().getKey();
 
-        // Eigene Nachricht senden
-        player.sendMessage("§7Du hast das Advancement §e" + key + "§7 abgeschlossen!");
-
-        // Optional: Sound oder Titel
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-        player.sendTitle("Erfolg!", "Du bist ein Champion!", 10, 70, 20);
+        if (key.contains("obtain")) return;
+        if (key.contains("recipes")) return;
+        player.sendMessage("§7Du hast das Advancement §e" + advancement.getDisplay().getTitle() + "§7 abgeschlossen!");
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 1.0f);
     }
 }

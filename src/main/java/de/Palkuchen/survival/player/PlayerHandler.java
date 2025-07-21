@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 public class PlayerHandler {
 
-    public static HashMap<String, CustomPlayer> customPlayerHashMap;
+    public static HashMap<String, CustomPlayer> customPlayerHashMap = new HashMap<>();
 
-    public CustomPlayer getPlayer(Player player) {
+    public static CustomPlayer getPlayer(Player player) {
         String uuid = player.getUniqueId().toString();
         if (customPlayerHashMap.containsKey(uuid)) return customPlayerHashMap.get(uuid);
         else {
