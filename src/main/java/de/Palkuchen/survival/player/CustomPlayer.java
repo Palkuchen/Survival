@@ -26,7 +26,7 @@ public class CustomPlayer {
 
     public void save() {
         YamlConfiguration config = Configuration.getConfiguration().getYamlConfiguration();
-        config.set("players." + uuid + ".group", group);
+        config.set("players." + uuid + ".group", group.name());
         Survival.plugin.saveConfig();
     }
 
