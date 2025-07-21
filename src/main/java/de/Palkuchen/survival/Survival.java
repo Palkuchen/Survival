@@ -1,5 +1,6 @@
 package de.Palkuchen.survival;
 
+import de.Palkuchen.survival.commands.MsgCommand;
 import de.Palkuchen.survival.enemys.FightEvents;
 import de.Palkuchen.survival.general.ConnectionEvents;
 import org.bukkit.Bukkit;
@@ -10,6 +11,7 @@ public final class Survival extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getCommand("besteatigung").setExecutor(new MsgCommand());
         // Plugin startup logic
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new FightEvents(), this);
