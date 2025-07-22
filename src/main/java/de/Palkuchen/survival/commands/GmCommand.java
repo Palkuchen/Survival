@@ -7,7 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class DoCommand implements CommandExecutor {
+public class GmCommand implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (!(sender instanceof Player)) {
@@ -15,13 +16,25 @@ public class DoCommand implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
+        if (!player.hasPermission("*")){
+            sender.sendMessage(ChatColor.GRAY + "Du hast nicht die rechte");
+            return false;
+
+        }
+
         if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("one")) {
+            if (args[0].equalsIgnoreCase("1")) {
                 player.setGameMode(GameMode.CREATIVE);
                 player.sendMessage(ChatColor.GRAY + "Du bist nun eine höhere existenz");
-            } else if (args[0].equalsIgnoreCase("two")) {
+            } else if (args[0].equalsIgnoreCase("0")) {
                 player.setGameMode(GameMode.SURVIVAL);
                 player.sendMessage(ChatColor.GRAY + "Du bist nun eine minderwertige existenz");
+            }else if (args[0].equalsIgnoreCase("3")) {
+                player.setGameMode(GameMode.SPECTATOR);
+                player.sendMessage(ChatColor.BLACK + "Du bist nun ein geist");
+            }else if (args[0].equalsIgnoreCase("2")) {
+                player.setGameMode(GameMode.ADVENTURE);
+                player.sendMessage(ChatColor.BLACK + "Du bist nun nutzlos");
             } else {
                 sender.sendMessage(ChatColor.GRAY + "Du bist inkompetent!");
             }

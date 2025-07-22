@@ -1,12 +1,15 @@
 package de.Palkuchen.survival;
 
-import de.Palkuchen.survival.commands.DoCommand;
+
 import de.Palkuchen.survival.commands.Anchor;
+import de.Palkuchen.survival.commands.GmCommand;
 import de.Palkuchen.survival.commands.MsgCommand;
 import de.Palkuchen.survival.commands.Permission;
 import de.Palkuchen.survival.enemys.FightEvents;
-import de.Palkuchen.survival.enemys.SpawnEvents;
-import de.Palkuchen.survival.general.*;
+import de.Palkuchen.survival.general.AshievmentEvents;
+import de.Palkuchen.survival.general.ChatEvents;
+import de.Palkuchen.survival.general.ConnectionEvents;
+import de.Palkuchen.survival.general.TabManager;
 import de.Palkuchen.survival.player.PlayerDamageEvents;
 import de.Palkuchen.survival.player.PlayerDeathEvents;
 import org.bukkit.Bukkit;
@@ -22,7 +25,7 @@ public final class Survival extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         getCommand("besteatigung").setExecutor(new MsgCommand());
-        getCommand("do").setExecutor(new DoCommand());
+        getCommand("do").setExecutor(new GmCommand());
         // Plugin startup logic
         getCommand("anchor").setExecutor(new Anchor());
         getCommand("permission").setExecutor(new Permission());

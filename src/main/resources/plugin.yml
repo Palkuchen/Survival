@@ -4,9 +4,8 @@ main: de.Palkuchen.survival.Survival
 api-version: '1.21'
 commands:
   Besteatigung:
-  do:
-    aliases: ["do1","do2!"]
-
+  gm:
+    aliases: ["Gm"]
   Anchor:
   permission:
     aliases:
