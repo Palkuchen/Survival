@@ -1,5 +1,6 @@
 package de.Palkuchen.survival;
 
+import de.Palkuchen.survival.commands.DoCommand;
 import de.Palkuchen.survival.commands.Anchor;
 import de.Palkuchen.survival.commands.MsgCommand;
 import de.Palkuchen.survival.commands.Permission;
@@ -23,6 +24,7 @@ public final class Survival extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         getCommand("besteatigung").setExecutor(new MsgCommand());
+        getCommand("do").setExecutor(new DoCommand());
         getCommand("anchor").setExecutor(new Anchor());
         getCommand("skill").setExecutor(new SkillCommand());
         getCommand("permission").setExecutor(new Permission());
