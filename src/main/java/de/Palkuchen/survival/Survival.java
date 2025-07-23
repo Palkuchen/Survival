@@ -7,10 +7,8 @@ import de.Palkuchen.survival.commands.MsgCommand;
 import de.Palkuchen.survival.commands.Permission;
 import de.Palkuchen.survival.commands.SkillCommand;
 import de.Palkuchen.survival.enemys.FightEvents;
-import de.Palkuchen.survival.general.AshievmentEvents;
-import de.Palkuchen.survival.general.ChatEvents;
-import de.Palkuchen.survival.general.ConnectionEvents;
-import de.Palkuchen.survival.general.TabManager;
+import de.Palkuchen.survival.enemys.SpawnEvents;
+import de.Palkuchen.survival.general.*;
 import de.Palkuchen.survival.player.PlayerDamageEvents;
 import de.Palkuchen.survival.player.PlayerDeathEvents;
 import de.Palkuchen.survival.util.UtilityEvents;
@@ -27,7 +25,7 @@ public final class Survival extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         getCommand("besteatigung").setExecutor(new MsgCommand());
-        getCommand("do").setExecutor(new GmCommand());
+        getCommand("gm").setExecutor(new GmCommand());
         getCommand("anchor").setExecutor(new Anchor());
         getCommand("skill").setExecutor(new SkillCommand());
         getCommand("permission").setExecutor(new Permission());

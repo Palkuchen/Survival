@@ -8,6 +8,5 @@ commands:
     aliases: ["Gm"]
   Anchor:
   permission:
-    aliases:
-      - perms:
+    aliases: ["perms"]
   skill:
