@@ -1,6 +1,9 @@
 package de.Palkuchen.survival.enemys;
 
 import de.Palkuchen.survival.Survival;
+import de.Palkuchen.survival.commands.Skills;
+import de.Palkuchen.survival.player.CustomPlayer;
+import de.Palkuchen.survival.player.PlayerHandler;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
@@ -24,6 +27,10 @@ public class FightEvents implements Listener {
                 return;
             }
             event.setDamage(event.getDamage()*1.5);
+        } else if (event.getDamager() instanceof Player attacker) {
+            CustomPlayer customPlayer = PlayerHandler.getPlayer(attacker);
+            int combat = customPlayer.getLevel(Skills.COMBAT);
+            event.setDamage(event.getDamage()*(1+combat/100.0));
         }
     }
 

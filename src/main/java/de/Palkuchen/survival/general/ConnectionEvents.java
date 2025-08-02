@@ -23,6 +23,8 @@ public class ConnectionEvents implements Listener {
         customPlayer.load();
     }
 
+    // First join
+
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         event.setQuitMessage(null);
